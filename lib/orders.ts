@@ -1,8 +1,8 @@
 import { randomUUID } from "node:crypto";
 
 export const products = {
-  notebook: { name: "Everyday notebook", amount: 15000 },
-  coffee: { name: "Coffee and a cookie", amount: 25000 },
+  notebook: { name: "Payment practice", amount: 15000 },
+  coffee: { name: "Mo:Mo & coffee for Sujjal", amount: 50000 },
 } as const;
 
 export type ProductId = keyof typeof products;
