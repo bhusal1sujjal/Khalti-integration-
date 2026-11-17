@@ -33,8 +33,7 @@ The app sends the selected product to its server, starts a payment with Khalti's
 | **Framework** | Next.js App Router |
 | **Language** | TypeScript |
 | **Sample amounts** | NPR 150 and NPR 500 |
-| **Maintainer** | [Sujjal Bhusal]
-
+| **Maintainer** | [bhusal1sujjal](https://sujjalbhusal.com.np)
 ## Features
 
 - Starts a Khalti test checkout from a server route.
@@ -164,11 +163,9 @@ The return URL alone is not proof of payment. The server-side lookup is what con
 - [Khalti ePayment documentation](https://docs.khalti.com/khalti-epayment/)
 - [Khalti getting started guide](https://docs.khalti.com/getting-started/)
 - [Khalti test portal](https://test-admin.khalti.com/)
-- [GitHub repository](https://github.com/bhusal1sujjal/Khalti-integration-)
-- [Sujjal Bhusal's portfolio](https://sujjalbhusal.com.np)
 
 ---
 
 <p align="center">
-  Built by <a href="https://sujjalbhusal.com.np">Sujjal Bhusal</a>
+  Thank You!
 </p>
