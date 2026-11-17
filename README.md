@@ -1,5 +1,5 @@
 
-## About
+
 
 This is a learning project for practicing Khalti's ePayment flow with a Next.js App Router app. It offers two sample checkouts: a small NPR 150 practice order and a NPR 500 Mo:Mo and coffee order.
 
