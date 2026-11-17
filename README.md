@@ -33,7 +33,7 @@ The app sends the selected product to its server, starts a payment with Khalti's
 | **Framework** | Next.js App Router |
 | **Language** | TypeScript |
 | **Sample amounts** | NPR 150 and NPR 500 |
-| **Maintainer** | [Sujjal Bhusal](https://sujjalbhusal.com.np)
+| **Maintainer** | [Sujjal Bhusal]
 
 ## Features
 
@@ -170,6 +170,5 @@ The return URL alone is not proof of payment. The server-side lookup is what con
 ---
 
 <p align="center">
-  Built by <a href="https://sujjalbhusal.com.np">Sujjal Bhusal</a> · </br>
-  <a href="https://github.com/bhusal1sujjal">GitHub: @bhusal1sujjal</a>
+  Built by <a href="https://sujjalbhusal.com.np">Sujjal Bhusal</a>
 </p>
