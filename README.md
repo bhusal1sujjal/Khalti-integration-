@@ -1,11 +1,47 @@
 <p align="center">
-  <img src="public/assets/logo.png" alt="KhaltiPayment logo" width="120" />
+  <img src="public/assets/logo.png" alt="KhaltiPayment logo" width="96" />
 </p>
 
+<h1 align="center">Khalti Payment Practice</h1>
 
-This is a learning project for practicing Khalti's ePayment flow with a Next.js App Router app. It offers two sample checkouts: a small NPR 150 practice order and a NPR 500 Mo:Mo and coffee order.
+<p align="center">
+  A hands-on Next.js project for learning Khalti sandbox checkout and server-side payment verification.
+</p>
 
-The project sends the selected product to the server, starts a payment with Khalti's test API, returns to the app, and checks the result with Khalti before showing a successful payment. It is intended for sandbox practice and learning. It is not a production shop.
+<p align="center">
+  <a href="https://khalti-integration.vercel.app/">Live preview</a>
+  &nbsp;·&nbsp;
+  <a href="https://docs.khalti.com/khalti-epayment/">Khalti ePayment docs</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/bhusal1sujjal/Khalti-integration-">Source code</a>
+</p>
+
+---
+
+## About
+
+Khalti Payment Practice is a small learning shop built with the Next.js App Router. It lets you try two sample orders—NPR 150 for payment practice and NPR 500 for Mo:Mo and coffee—and follow what happens from checkout to server verification.
+
+The app sends the selected product to its server, starts a payment with Khalti's test API, and checks the returned payment reference with Khalti before showing the result. It is for learning in test mode; it is not a production payment service.
+
+## At a glance
+
+| | |
+|---|---|
+| **Live demo** | [khalti-integration.vercel.app](https://khalti-integration.vercel.app/) |
+| **Payment provider** | Khalti ePayment, test environment |
+| **Framework** | Next.js App Router |
+| **Language** | TypeScript |
+| **Sample amounts** | NPR 150 and NPR 500 |
+| **Maintainer** | [Sujjal Bhusal](https://sujjalbhusal.com.np) · [@bhusal1sujjal](https://github.com/bhusal1sujjal) |
+
+## Features
+
+- Starts a Khalti test checkout from a server route.
+- Keeps product prices on the server and sends amounts in paisa.
+- Verifies the returned payment reference with Khalti's lookup API.
+- Shows completed, pending, and failed payment results.
+- Includes responsive layouts and a small walkthrough of the payment flow.
 
 ## Project structure
 
@@ -14,95 +50,126 @@ khalti-practice/
 ├── app/
 │   ├── api/
 │   │   ├── checkout/
-│   │   │   └── route.ts              # Creates the order and starts Khalti checkout
+│   │   │   └── route.ts              # Validates an item and starts Khalti checkout
 │   │   └── verify/
-│   │       └── route.ts              # Verifies the payment with Khalti's lookup API
+│   │       └── route.ts              # Checks payment status with Khalti lookup
 │   ├── payment/
 │   │   └── result/
-│   │       └── page.tsx              # Reads Khalti's return details and displays the result
-│   ├── globals.css                   # Global styles and responsive page layout
-│   ├── layout.tsx                    # Root layout, page metadata, and global CSS import
-│   ├── page.tsx                      # Home page, sample orders, and checkout buttons
-│   └── styles.d.ts                   # TypeScript declaration for CSS side-effect imports
+│   │       └── page.tsx              # Verifies the return and displays its result
+│   ├── globals.css                   # Global styles and responsive layouts
+│   ├── layout.tsx                    # Root HTML layout, metadata, and CSS import
+│   ├── page.tsx                      # Home page, sample orders, and checkout UI
+│   └── styles.d.ts                   # TypeScript declaration for CSS imports
 ├── lib/
-│   └── orders.ts                     # Sample products and temporary in-memory order store
+│   └── orders.ts                     # Sample products and temporary order store
 ├── public/
 │   └── assets/
-│       └── logo.png                  # Navbar logo served at /assets/logo.png
-├── .env.example                      # Safe template for required environment variables
-├── .env.local                         # Your private local keys; do not commit this file
-├── .gitignore                         # Files Git should leave out of the repository
+│       └── logo.png                  # Logo shown in the navbar and this README
+├── .env.example                      # Environment variable template
+├── .env.local                         # Private local settings; never commit this
+├── .gitignore                         # Files and folders Git should ignore
 ├── next.config.mjs                    # Next.js configuration
-├── package.json                       # Project scripts and dependencies
-├── package-lock.json                  # Exact dependency versions installed by npm
-├── postcss.config.mjs                 # PostCSS configuration used by Tailwind CSS
-└── tsconfig.json                      # TypeScript settings and the @/* import alias
+├── package.json                       # Project scripts and dependency list
+├── package-lock.json                  # Locked npm dependency versions
+├── postcss.config.mjs                 # PostCSS and Tailwind CSS configuration
+└── tsconfig.json                      # TypeScript settings and @/* path alias
 ```
 
-`.next/` and `node_modules/` are generated locally when you run the app and install dependencies. They should not be committed to Git.
+`.next/` and `node_modules/` are generated on your computer. They are ignored by Git and should not be committed.
 
-## Run it locally
+## Technology and packages
 
-### 1. Install Node.js
+| Package | Version in this project | Purpose |
+|---|---:|---|
+| `next` | `14.2.31` | App framework, pages, and API routes |
+| `react` / `react-dom` | `18.3.1` | User interface |
+| `typescript` | `^5.7.2` | Type checking and typed application code |
+| `tailwindcss` | `^4.3.5` | Styling toolchain dependency |
+| `@tailwindcss/postcss` | `^4.3.5` | Tailwind's PostCSS plugin |
+| `postcss` | `^8.5.33` | CSS processing |
+| `lucide-react` | `^0.468.0` | UI icons, including the GitHub brand icon used here |
 
-Install a current LTS version of [Node.js](https://nodejs.org/). npm is included with Node.js.
+The exact installed dependency versions are recorded in `package-lock.json`. Run `npm install` to install the packages from that lockfile.
 
-### 2. Install the project packages
+## Getting started
+
+### Requirements
+
+- Node.js 20 or newer
+- npm (included with Node.js)
+- A Khalti test secret key from the [Khalti test portal](https://test-admin.khalti.com/)
+
+### 1. Install dependencies
 
 From the project folder, run:
 
 ```bash
 npm install
-npm install lucide-react@0.468.0
 ```
 
-This project uses Lucide icons. Version `0.468.0` includes the GitHub brand icon used in the navbar.
+### 2. Configure local environment variables
 
-### 3. Add your Khalti sandbox key
+Copy `.env.example` to `.env.local`. For PowerShell:
 
-Copy `.env.example` to `.env.local` and fill in your Khalti test secret key:
+```powershell
+Copy-Item .env.example .env.local
+```
+
+Open `.env.local` and set your sandbox key and the local address:
 
 ```dotenv
 KHALTI_SECRET_KEY=your_test_secret_key_here
 NEXT_PUBLIC_SITE_URL=http://localhost:3100
 ```
 
-Get test credentials from [Khalti's test portal](https://test-admin.khalti.com/) and follow the [Khalti getting started guide](https://docs.khalti.com/getting-started/). Keep the real value of `KHALTI_SECRET_KEY` private. Do not add `NEXT_PUBLIC_` to that variable name or commit `.env.local`.
+Keep the real secret key in `.env.local`. Never commit that file, share the key, or rename it with a `NEXT_PUBLIC_` prefix. Use the [Khalti getting started guide](https://docs.khalti.com/getting-started/) for current test account instructions.
 
-### 4. Start the app
+### 3. Start the development server
 
 ```bash
 npm run dev -- --port 3100
 ```
 
-Open [http://localhost:3100](http://localhost:3100). If you choose another port, update `NEXT_PUBLIC_SITE_URL` in `.env.local` to use that port, then restart the dev server.
+Open [http://localhost:3100](http://localhost:3100). If you use a different port, update `NEXT_PUBLIC_SITE_URL` and restart the app.
 
-## How the payment flow works
+## Available commands
 
-1. Select a sample order on the home page. The browser sends only its product ID to `POST /api/checkout`.
-2. `app/api/checkout/route.ts` looks up the price on the server and calls Khalti's `epayment/initiate` endpoint with the private key. Khalti responds with a payment URL and a `pidx`.
-3. The browser redirects to Khalti's hosted test checkout. Complete or cancel the test payment there.
-4. Khalti returns the browser to `/payment/result` with payment details.
-5. `app/payment/result/page.tsx` sends the returned `pidx` and the local order ID to `POST /api/verify`.
-6. `app/api/verify/route.ts` calls Khalti's `epayment/lookup` endpoint. The app checks the payment reference, amount, and status before showing a completed result.
+| Command | What it does |
+|---|---|
+| `npm run dev -- --port 3100` | Starts the local development server on port 3100 |
+| `npm run build` | Creates a production build |
+| `npm run start` | Serves the production build locally |
 
-A return URL by itself does not prove that a payment succeeded. The server-side lookup is the confirmation step.
+## Payment flow
 
-## Learning notes and limitations
+| Step | What happens | Where to read the code |
+|---|---|---|
+| 1. Choose | The browser sends a product ID; it does not send a price. | `app/page.tsx` |
+| 2. Initiate | The server reads the trusted price and requests a Khalti checkout URL. | `app/api/checkout/route.ts` and `lib/orders.ts` |
+| 3. Pay | The customer continues to Khalti's hosted test checkout. | Khalti checkout page |
+| 4. Return | Khalti redirects back to the app with payment details. | `app/payment/result/page.tsx` |
+| 5. Verify | The server checks the payment reference, amount, and status with Khalti. | `app/api/verify/route.ts` |
 
-- Prices are defined on the server in `lib/orders.ts` and converted to paisa for Khalti (NPR 150 is 15,000 paisa; NPR 500 is 50,000 paisa). The browser cannot choose the amount.
-- Orders are stored in memory for this practice app. They disappear when the server restarts and are not shared across multiple app instances.
-- A real payment service needs a persistent database, durable order records, idempotent payment processing, and production credentials and deployment settings.
-- Use Khalti's test environment while learning. Do not use this demo to collect real customer payments.
+The return URL alone is not proof of payment. The server-side lookup is what confirms the payment status.
 
-## Useful links
+## Learning limitations
+
+- Orders are stored temporarily in server memory. They are cleared when the server restarts and are not shared across multiple instances.
+- This demo is intended for sandbox learning. Do not use it to collect real customer payments.
+- A production service needs persistent order storage, duplicate-request protection, secure deployment settings, and careful payment state handling.
+
+## Links
 
 - [Live preview](https://khalti-integration.vercel.app/)
 - [Khalti ePayment documentation](https://docs.khalti.com/khalti-epayment/)
-- [Khalti getting started and test credentials](https://docs.khalti.com/getting-started/)
+- [Khalti getting started guide](https://docs.khalti.com/getting-started/)
 - [Khalti test portal](https://test-admin.khalti.com/)
 - [GitHub repository](https://github.com/bhusal1sujjal/Khalti-integration-)
+- [Sujjal Bhusal's portfolio](https://sujjalbhusal.com.np)
 
-## Built by
+---
 
-**Sujjal Bhusal** · [Portfolio](https://sujjalbhusal.com.np) · [GitHub: @bhusal1sujjal](https://github.com/bhusal1sujjal)
+<p align="center">
+  Built by <a href="https://sujjalbhusal.com.np">Sujjal Bhusal</a> ·
+  <a href="https://github.com/bhusal1sujjal">GitHub: @bhusal1sujjal</a>
+</p>
